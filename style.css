@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;900&display=swap');
 *{
     box-sizing: border-box;
     margin: 0;
@@ -175,6 +175,7 @@ body{
     padding: 20px;
     min-height: 100%;
     transition: all 0.3s;
+    overflow-x: auto;
 }
 .navbar{
     display: flex;
@@ -244,6 +245,27 @@ body{
 /*TABELA CATEGORIA*/
 .table-responsivel{
     width: 100%;
-    background-color: #0063ce;
+    /*background-color: #0063ce;*/
     margin-top: 23px;
+}
+
+.tabela{
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+}
+
+.tabela th {
+    display: table-cell;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: start;
+}
+.tabela th {
+    position: relative;
+    padding: 10px 10px;
+    border: 1px solid #dee2e6;
+    border-bottom: 2px solid #dee2e6;;
+    
 }
