@@ -7,16 +7,17 @@
 }
 body{
    display: flex;
-   min-height: 100vh;
+   height: 100%;
 }
 .wrapper { /*DIV QUE ENGLOBA TODA AREA DO MENU*/
     position: relative;
     display: flex;
+    height: 100%;
 }
 .wrapper .sidebar {  /*AREA DO MENU*/
     position: relative;
     width: 230px;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #687acc;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -29,7 +30,7 @@ body{
 .sidebar .sidebar-header {
     text-align: center;
     padding: 20px;
-    background: #6d7fcc;
+    background: #5266be;
     color: #ffffff;
 }
 .sidebar .sidebar-header h3::before{
@@ -172,7 +173,7 @@ body{
 .content{
     width: 100%;
     padding: 20px;
-    min-height: 100vh;
+    min-height: 100%;
     transition: all 0.3s;
 }
 .navbar{
@@ -238,4 +239,11 @@ body{
     height: 30px;
     font-size: .90rem;
     margin-right: 15px;
+}
+
+/*TABELA CATEGORIA*/
+.table-responsivel{
+    width: 100%;
+    background-color: #0063ce;
+    margin-top: 23px;
 }
