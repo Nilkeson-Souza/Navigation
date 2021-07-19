@@ -58,11 +58,11 @@
                     Categoria
                 </div>
             </nav>
-           
+
             <div class="area-buttons-filter">
 
                 <div class="area-button-addCategoria">
-                    <button class="btn btn-categoria">
+                    <button class="btn btn-categoria" onclick="abrirModalCategoria()">
                         <i class="fas fa-plus"></i>
                         Add categoria
                     </button>
@@ -100,7 +100,7 @@
                     </thead>
 
                     <tbody>
-                        
+
                     </tbody>
 
                 </table>
@@ -108,6 +108,50 @@
             </div>
 
         </div>
+
+        <!-------------MODAL--------------->
+        <div class="modal" id="modalAdicionar">
+
+            <div class="modal-dialogo">
+                <div class="modal-header">
+                    <h4>Adicionar categoria</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group">
+
+                        <label for="psw"><span>ID:</span></label><br>
+                        <input type="number" class="form-control" id="adicionarId">
+
+                    </div>
+                    <div class="form-group">
+                    
+                        <label for="psw"><span>Nome:</span></label><br>
+                        <input type="text" class="form-control" id="adicionarNome">
+                    
+                    </div>
+                    <div class="form-group">
+                    
+                        <button class="btn btn-salvar-categoria">Salvar</button>
+                    
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                
+                    <button class="btn btn-cancelar-categoria">Cancelar</button>
+                
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            const categoria = document.querySelector('#modalAdicionar');
+            function abrirModalCategoria(){
+                categoria.style.display = 'block';
+            }
+        </script>
 
         <script src="./script.js"></script>
     </body>

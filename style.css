@@ -8,6 +8,7 @@
 body{
    display: flex;
    height: 100%;
+   background-color: #fafafa;
 }
 .wrapper { /*DIV QUE ENGLOBA TODA AREA DO MENU*/
     position: relative;
@@ -247,6 +248,7 @@ body{
     width: 100%;
     /*background-color: #0063ce;*/
     margin-top: 23px;
+    padding: 15px;
 }
 
 .tabela{
@@ -266,6 +268,84 @@ body{
     position: relative;
     padding: 10px 10px;
     border: 1px solid #dee2e6;
-    border-bottom: 2px solid #dee2e6;;
+    border-bottom: 2px solid #dee2e6;
     
+}
+
+/*********MODAL************/
+
+.modal{
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.479);
+}
+.modal .modal-dialogo{
+    width: 455px;
+    min-height: 415px;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.541);
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 25px;
+    outline: none;
+}
+.modal .modal-dialogo .modal-header{
+    height: 92px;
+    line-height: 92px;
+    border-bottom: 1px solid #e2e2e2;
+}
+.modal .modal-dialogo .modal-header h4{
+    font-size: 22px;
+    margin-left: 50px;
+    font-weight: 500;
+    color: #47b1db;
+}
+.modal .modal-dialogo .modal-body{
+    padding: 30px 50px;
+    border-bottom: 1px solid #e2e2e2;
+}
+.modal .modal-dialogo .modal-body .form-group{
+    width: 100%;
+}
+
+.modal .modal-dialogo .modal-body .form-group input{
+    width: 100%;
+    margin-top: 7px;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+}
+.modal .modal-dialogo .modal-body .form-group input:focus{
+    box-shadow: 0 0 0 3px #a8cff0;
+    border: 1px solid #47b1db;
+}
+
+.modal .modal-dialogo .modal-body .form-group .btn-salvar-categoria{
+    width: 100%;
+    margin-top: 20px;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+.modal .modal-dialogo .modal-body .form-group .btn-salvar-categoria:hover{
+    background-color: #228038;
+}
+.modal .modal-dialogo .modal-footer{
+    padding: 15px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 80px;
+}
+.modal .modal-dialogo .modal-footer .btn-cancelar-categoria{
+    width: 90px;
+    background-color: #dc3545;
+}
+.modal .modal-dialogo .modal-footer .btn-cancelar-categoria:hover{
+    width: 90px;
+    box-shadow: 0 0 0 3px #f34b5cb2;
+    background-color: #b32a38;
 }
