@@ -27,25 +27,14 @@ toggle.addEventListener('click', () => {
     liA.classList.toggle('active')
 })
 
-/********MODAL ADD CATEGORIA******** *
+/********MODAL ADD CATEGORIA******** */
 btnCategoria.addEventListener('click', () => {
     abrirModal(categoria)
 })
 
 btnCancelarCategoria.addEventListener('click', () => {
     fecharModal(categoria)
-})*/
-
-const abrirModal = (element) => {
-    element.style.display = 'block';
-}
-const abrirModalflex = (element) => {
-    element.style.display = 'flex';
-}
-
-const fecharModal = (element) => {
-    element.style.display = 'none'
-}
+})
 
 /********MODAL ALTERAR CATEGORIA******** *
 btnCategoria.addEventListener('click', () => {
@@ -75,10 +64,22 @@ cancelarAlerta.addEventListener('click', () => {
 })
 */
 
+/**********MODAL PROGRESS********** *
 btnCategoria.addEventListener('click', () => {
     abrirModalflex(modalProgress)
 })
 
 btnCancelarCategoria.addEventListener('click', () => {
     fecharModal(modalProgress)
-})
+})*/
+
+const abrirModal = (element) => {
+    element.style.display = 'block';
+}
+const abrirModalflex = (element) => {
+    element.style.display = 'flex';
+}
+
+const fecharModal = (element) => {
+    element.style.display = 'none'
+}
