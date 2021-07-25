@@ -62,7 +62,7 @@
             <div class="area-buttons-filter">
 
                 <div class="area-button-addCategoria">
-                    <button class="btn btn-categoria" onclick="abrirModalCategoria()">
+                    <button class="btn btn-categoria">
                         <i class="fas fa-plus"></i>
                         Add categoria
                     </button>
@@ -109,7 +109,7 @@
 
         </div>
 
-        <!-------------MODAL--------------->
+        <!-------------MODAL ADICIONAR--------------->
         <div class="modal" id="modalAdicionar">
 
             <div class="modal-dialogo">
@@ -146,12 +146,105 @@
 
         </div>
 
-        <script>
-            const categoria = document.querySelector('#modalAdicionar');
-            function abrirModalCategoria(){
-                categoria.style.display = 'block';
-            }
-        </script>
+        <!-------------MODAL ALTERAR--------------->
+        <div class="modal" id="modalAlterar">
+        
+            <div class="modal-dialogo">
+                <div class="modal-header">
+                    <h4>Alterar categoria</h4>
+                </div>
+        
+                <div class="modal-body">
+                    <div class="form-group">
+        
+                        <label for="psw"><span>ID:</span></label><br>
+                        <input type="number" class="form-control" id="adicionarId">
+        
+                    </div>
+                    <div class="form-group">
+        
+                        <label for="psw"><span>Nome:</span></label><br>
+                        <input type="text" class="form-control" id="adicionarNome">
+        
+                    </div>
+                    <div class="form-group">
+        
+                        <button class="btn btn-salvar-categoriaAlterar">Alterar</button>
+        
+                    </div>
+                </div>
+        
+                <div class="modal-footer">
+        
+                    <button class="btn btn-cancelar-categoria">Cancelar</button> 
+        
+                </div>
+            </div>
+        
+        </div>
+
+        <!-------------MODAL REMOVER--------------->
+        <div class="modal" id="modalRemover">
+        
+            <div class="modal-dialogo">
+                <div class="modal-header">
+                    <h4>Remover categoria</h4>
+                </div>
+        
+                <div class="modal-body">
+                    <div class="form-group">
+        
+                        Realmente deseja remover este item?
+        
+                    </div>
+                </div>
+        
+                <div class="modal-footer">
+                    
+                    <button class="btn btn-salvar-categoriaRemover">Sim</button>
+                    &nbsp;
+                    <button class="btn btn-cancelar-categoriaRemover">Cancelar</button>
+        
+                </div>
+            </div>
+        
+        </div>
+
+        <!-------------MODAL ALERTA--------------->
+        <div class="modal" id="modalAlerta">
+        
+            <div class="modal-dialogo">
+                <div class="modal-header">
+                    <h4>Alerta</h4>
+                </div>
+        
+                <div class="modal-body">
+                    <div class="form-group">
+        
+                        <label for="" id="alertamensage">Error ao tentar abrir</label>
+        
+                    </div>
+                </div>
+        
+                <div class="modal-footer">
+        
+                    <button class="btn btn-cancelar-categoriaRemover" id="cancelarAlerta">Ok</button>
+        
+                </div>
+            </div>
+        
+        </div>
+
+        <!-------------ProgressBar--------------->
+        <div class="modal" id="modalProgress">
+            
+            <div class="loadingio-spinner-rolling-72td6b9ryok">
+                <div class="ldio-xxms25nl8mj">
+                    <div></div>
+                </div>
+            </div>
+        
+        </div>
 
         <script src="./script.js"></script>
     </body>
