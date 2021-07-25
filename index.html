@@ -52,6 +52,19 @@
         </nav>
     </div>
 
-    <script src="./script.js"></script>
+    <script>
+        const c = (c) => document.querySelector(c)
+        const toggle = c('.toggle')
+        c('.toggle-profile').addEventListener('click', () => {
+            c('.ul-sub-menu-profile').classList.toggle('show')
+        })
+
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('active')
+            c('.sidebar').classList.toggle('active')
+            c('.title-h3').classList.toggle('active')
+            c('#li-a').classList.toggle('active')
+        }) 
+    </script>
 </body>
 </html>

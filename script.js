@@ -1,31 +1,16 @@
-const toggle = document.querySelector('.toggle')
-const sidebar = document.querySelector('.sidebar')
-const titleH3 = document.querySelector('.title-h3')
-const ulSubMenu = document.querySelector('.toggle-profile')
-const ulSubMenuProfile = document.querySelector('.ul-sub-menu-profile')
-const liA = document.querySelector('#li-a')
-const btnCategoria = document.querySelector('.btn-categoria')
-const categoria = document.querySelector('#modalAdicionar');
-const btnCancelarCategoria = document.querySelector('.btn-cancelar-categoria')
-const btnCancelarCategoriaAlterar = document.querySelector('.btn-cancelar-categoriaAlterar')
-const alterarCategoria = document.querySelector('#modalAlterar');
-const modalRemover = document.querySelector('#modalRemover')
-const btnCancelarCategoriaRemover = document.querySelector('.btn-cancelar-categoriaRemover')
-const modalAlerta = document.querySelector('#modalAlerta')
-const cancelarAlerta = document.querySelector('#cancelarAlerta')
-const modalProgress = document.querySelector('#modalProgress')
+const c = (cs) => document.querySelector(cs)
+const btnCategoria = c('.btn-categoria')
+const categoria = c('#modalAdicionar');
+const btnCancelarCategoria = c('.btn-cancelar-categoria')
+const btnCancelarCategoriaAlterar = c('.btn-cancelar-categoriaAlterar')
+const alterarCategoria = c('#modalAlterar');
+const modalRemover = c('#modalRemover')
+const btnCancelarCategoriaRemover = c('.btn-cancelar-categoriaRemover')
+const modalAlerta = c('#modalAlerta')
+const cancelarAlerta = c('#cancelarAlerta')
+const modalProgress = c('#modalProgress')
+const salvarCategoria = c('.btn-salvar-categoria')
 
-
-ulSubMenu.addEventListener('click', () => {
-    ulSubMenuProfile.classList.toggle('show')
-})
-
-toggle.addEventListener('click', () => {
-    toggle.classList.toggle('active')
-    sidebar.classList.toggle('active')
-    titleH3.classList.toggle('active')
-    liA.classList.toggle('active')
-})
 
 /********MODAL ADD CATEGORIA******** */
 btnCategoria.addEventListener('click', () => {
@@ -35,6 +20,16 @@ btnCategoria.addEventListener('click', () => {
 btnCancelarCategoria.addEventListener('click', () => {
     fecharModal(categoria)
 })
+
+salvarCategoria.addEventListener('click', () => {
+
+    const condicao = true
+    if(condicao) {
+        console.log('Salvando categoria...');
+    }
+    
+})
+
 
 /********MODAL ALTERAR CATEGORIA******** *
 btnCategoria.addEventListener('click', () => {
