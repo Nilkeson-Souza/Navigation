@@ -1,4 +1,5 @@
 const c = (cs) => document.querySelector(cs)
+const cs = (cs) => document.querySelector(cs)
 const btnCategoria = c('.btn-categoria')
 const categoria = c('#modalAdicionar');
 const btnCancelarCategoria = c('.btn-cancelar-categoria')
@@ -10,35 +11,55 @@ const modalAlerta = c('#modalAlerta')
 const cancelarAlerta = c('#cancelarAlerta')
 const modalProgress = c('#modalProgress')
 const salvarCategoria = c('.btn-salvar-categoria')
+const btnSucess = cs('.btn-sucess')
 
 
-/********MODAL ADD CATEGORIA******** */
+//-----------------------------MODAL ADD CATEGORIA--------------------------------------//
+
+//-------------FUNÇÃO DE LIMPAR CAMPOS---------------//
+const clearFields = (id, name) => {
+    id.value = ''
+    name.value = ''
+}
+
+//-------------ABRIR MODAL CATEGORIA
 btnCategoria.addEventListener('click', () => {
     abrirModal(categoria)
 })
-
+//-------------FECHAR MODAL CATEGORIA
 btnCancelarCategoria.addEventListener('click', () => {
     fecharModal(categoria)
 })
 
+//------FUNÇÃO DE ESCULTA DO ADICIONAR CATEGORIA--------//
 salvarCategoria.addEventListener('click', () => {
 
-    const condicao = true
-    if(condicao) {
-        console.log('Salvando categoria...');
+    const id = c('#adicionarId')
+    const name = c('#adicionarNome')
+    const verifieldId = id.value.trim()
+    const verifieldName = name.value.trim()
+
+    if (verifieldId !== '' && verifieldName !== '') {
+        
+        alert(`ID ${id.value}: ${name.value}`)
+        clearFields(id, name)
+
+    } else {
+        alert('Os campos não podem estar vazios')
     }
     
+
 })
 
 
-/********MODAL ALTERAR CATEGORIA******** *
-btnCategoria.addEventListener('click', () => {
+/********MODAL ALTERAR CATEGORIA******** */
+btnSucess.addEventListener('click', () => {
     abrirModal(alterarCategoria)
 })
 
-btnCancelarCategoria.addEventListener('click', () => {
+btnCancelarCategoriaAlterar.addEventListener('click', () => {
     fecharModal(alterarCategoria)
-})*/
+})
 
 /********MODAL REMOVER CATEGORIA******** 
 btnCategoria.addEventListener('click', () => {

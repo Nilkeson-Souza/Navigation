@@ -251,25 +251,49 @@ body{
     padding: 15px;
 }
 
-.tabela{
+#tabelaCategoria{
     width: 100%;
     max-width: 100%;
     border-collapse: collapse;
     overflow-x: auto;
 }
 
-.tabela th {
-    display: table-cell;
-    font-size: 15px;
-    font-weight: 700;
-    text-align: start;
-}
-.tabela th {
-    position: relative;
-    padding: 10px 10px;
-    border: 1px solid #dee2e6;
-    border-bottom: 2px solid #dee2e6;
+#tabelaCategoria td, #tabelaCategoria th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-weight: 600;
     
+}
+#tabelaCategoria tbody tr:nth-child(odd){
+    background-color: #eeeeee;
+}
+
+#tabelaCategoria th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+}
+.tabela td {
+   color: rgb(87, 87, 87);
+}
+
+.btn-sucess {
+    width: auto;
+    padding: 3px 15px;
+    background-color: #28a745;
+    border: 1px solid #00000025;
+}
+.btn-sucess:hover{
+    background-color: #14852f;
+}
+.btn-danger {
+    width: auto;
+    padding: 3px 15px;
+    background-color: #da3142;
+    border: 1px solid #00000025;
+}
+.btn-danger:hover{
+    background-color: #b31b2b;
 }
 
 /*********MODAL************/
@@ -341,6 +365,7 @@ body{
     height: 80px;
 }
 .modal .modal-dialogo .modal-footer .btn-cancelar-categoria{
+    margin-top: 20px;
     width: 90px;
     background-color: #dc3545;
 }
@@ -350,6 +375,16 @@ body{
     background-color: #b32a38;
 }
 
+.modal .modal-dialogo .btn-salvar-categoriaAlterar{
+    width: 100%;
+    margin-top: 20px;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.modal .modal-dialogo .btn-salvar-categoriaAlterar:hover{
+    background-color: #137c2b;
+}
 .modal .modal-dialogo .modal-footer .btn-salvar-categoriaRemover{
     width: 90px;
 }
