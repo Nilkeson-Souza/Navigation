@@ -194,6 +194,4 @@ maxRows.addEventListener('change', () => {
             tr[i].style.display = ''
         }
     }
-
-    
 })
