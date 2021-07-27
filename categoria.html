@@ -70,17 +70,18 @@
                 </div>
 
                 <div class="area-filter-table">
-                    <input type="text" id="pesquisar0" placeholder="Pesquisar Id...">
+                    <input type="text" id="pesquisar0" onkeyup="pesquisar(0)" placeholder="Pesquisar Id...">
                     &nbsp;
                     &nbsp;
-                    <input type="text" id="pesquisar1" placeholder="Pesquisar nome...">
+                    <input type="text" id="pesquisar1" onkeyup="pesquisar(1)" placeholder="Pesquisar nome...">
                     &nbsp;
                     &nbsp;
+                    
                     <select name="state" id="maxRows">
 
                         <option value="100">Mostrar todos</option>
-                        <option value="5">5</option>
-                        <option value="10">10</option>
+                        <option value="2">2</option>
+                        <option value="4">4</option>
                         <option value="15">15</option>
                         <option value="20">20</option>
 
@@ -99,22 +100,8 @@
                         </tr>
                     </thead>
 
-                    <tbody>
-                        <tr>
-                            <td>0</td>
-                            <td>Nilkeson</td>
-                            <td><button class="btn btn-sucess"><i class="fas fa-edit"></i></button>&nbsp &nbsp<button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Nilkeson</td>
-                            <td><button class="btn btn-sucess"><i class="fas fa-edit"></i></button>&nbsp &nbsp<button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Taiane</td>
-                            <td><button class="btn btn-sucess"><i class="fas fa-edit"></i></button>&nbsp &nbsp<button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
-                        </tr>
+                    <tbody id="tbody">
+                        
                     </tbody>
 
                 </table>

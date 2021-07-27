@@ -12,26 +12,27 @@ const cancelarAlerta = c('#cancelarAlerta')
 const modalProgress = c('#modalProgress')
 const salvarCategoria = c('.btn-salvar-categoria')
 const btnSucess = cs('.btn-sucess')
+const maxRows = c('#maxRows');
 
 
-//-----------------------------MODAL ADD CATEGORIA--------------------------------------//
+//-----------------------------MODAL -------------------------------------//
 
-//-------------FUNÇÃO DE LIMPAR CAMPOS---------------//
+//--Funcão de limpar campos
 const clearFields = (id, name) => {
     id.value = ''
     name.value = ''
 }
 
-//-------------ABRIR MODAL CATEGORIA
+//--Abrir modal categoria
 btnCategoria.addEventListener('click', () => {
     abrirModal(categoria)
 })
-//-------------FECHAR MODAL CATEGORIA
+//-------------Fechar modal categoria
 btnCancelarCategoria.addEventListener('click', () => {
     fecharModal(categoria)
 })
 
-//------FUNÇÃO DE ESCULTA DO ADICIONAR CATEGORIA--------//
+//------Função de esculta de adicionar categoria
 salvarCategoria.addEventListener('click', () => {
 
     const id = c('#adicionarId')
@@ -40,35 +41,35 @@ salvarCategoria.addEventListener('click', () => {
     const verifieldName = name.value.trim()
 
     if (verifieldId !== '' && verifieldName !== '') {
-        
+
         alert(`ID ${id.value}: ${name.value}`)
         clearFields(id, name)
 
     } else {
         alert('Os campos não podem estar vazios')
     }
-    
+
 
 })
 
 
-/********MODAL ALTERAR CATEGORIA******** */
-btnSucess.addEventListener('click', () => {
+//------MODAL ALTERAR CATEGORIA
+function abrirModalAlterar() {
     abrirModal(alterarCategoria)
-})
+}
 
 btnCancelarCategoriaAlterar.addEventListener('click', () => {
     fecharModal(alterarCategoria)
 })
 
-/********MODAL REMOVER CATEGORIA******** 
-btnCategoria.addEventListener('click', () => {
+/********MODAL REMOVER CATEGORIA********/
+function fecharModalAlterar() {
     abrirModal(modalRemover)
-})
+}
 
 btnCancelarCategoriaRemover.addEventListener('click', () => {
     fecharModal(modalRemover)
-})*/
+})
 
 /********MODAL ALERTA********
 btnCategoria.addEventListener('click', () => {
@@ -99,3 +100,100 @@ const abrirModalflex = (element) => {
 const fecharModal = (element) => {
     element.style.display = 'none'
 }
+
+//--------------------------Tabela----------------------------------//
+
+const tbody = c('#tbody');
+
+const dados = [
+    { id: '168', nome: 'Nilkeson' },
+    { id: '26', nome: 'Taiane' },
+    { id: '36', nome: 'Nikollas' },
+    { id: '460', nome: 'Nikollas' },
+    { id: '536', nome: 'Nikollas' },
+]
+
+
+
+dados.forEach(element => {
+
+    const linha = tbody.insertRow();
+
+    const colunaId = linha.insertCell(0);
+    const colunaNome = linha.insertCell(1)
+    const colunaAcoes = linha.insertCell(2)
+
+    const idThis = document.createTextNode(element.id)
+    const nomeThis = document.createTextNode(element.nome)
+
+    colunaId.appendChild(idThis)
+    colunaNome.appendChild(nomeThis)
+
+    const buttonAlterar = document.createElement('button')
+    buttonAlterar.innerHTML = `<i class="fas fa-edit"></i>`
+    buttonAlterar.className = 'btn btn-sucess'
+
+    const buttonRemover = document.createElement('button')
+    buttonRemover.innerHTML = `<i class="fas fa-trash-alt">`
+    buttonRemover.className = 'btn btn-danger'
+
+    buttonAlterar.onclick = () => abrirModalAlterar()
+    buttonRemover.onclick = () => fecharModalAlterar()
+
+    colunaAcoes.appendChild(buttonAlterar)
+    colunaAcoes.appendChild(document.createTextNode(' '))
+    colunaAcoes.appendChild(buttonRemover)
+})
+
+//--------Funções da tabela---------//
+
+const pesquisar = (opcao) => {
+
+    const inputValor = c('#pesquisar'+opcao)
+    let filtro, tr, td, i, valorItemTabela;
+
+
+    filtro = inputValor.value.toUpperCase()
+    tr = tbody.getElementsByTagName('tr');
+
+
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName('td')[opcao]
+
+        if (td) {
+            valorItemTabela = td.innerHTML.toUpperCase()
+            const verifieldValor = valorItemTabela.indexOf(filtro) == -1
+
+            if (verifieldValor) {
+                tr[i].style.display = 'none'
+            } else {
+                tr[i].style.display = ''
+            }
+        }
+    }
+}
+
+maxRows.addEventListener('change', () => {
+    
+    let tr, i, maxLinhas
+    maxLinhas = Number(maxRows.value) -1
+
+    console.log(maxLinhas);
+
+    tr = tbody.getElementsByTagName('tr');
+
+
+    for (i = 0; i < tr.length; i++) {
+
+        if (i > maxLinhas) {
+
+            tr[i].style.display = 'none'
+
+        } else {
+
+            tr[i].style.display = ''
+        }
+    }
+
+    
+})
