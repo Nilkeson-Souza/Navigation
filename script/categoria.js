@@ -13,6 +13,7 @@ const modalProgress = c('#modalProgress')
 const salvarCategoria = c('.btn-salvar-categoria')
 const btnSucess = cs('.btn-sucess')
 const maxRows = c('#maxRows');
+const alertamensage = c('#alertamensage');
 
 
 //-----------------------------MODAL -------------------------------------//
@@ -40,7 +41,7 @@ salvarCategoria.addEventListener('click', () => {
     const verifieldId = id.value.trim()
     const verifieldName = name.value.trim()
 
-    if (verifieldId !== '' && verifieldName !== '') {
+    if (verifieldId !== '' && verifieldId >= 1 && verifieldName !== '') {
 
         abrirModalflex(modalProgress)
 
@@ -74,15 +75,14 @@ btnCancelarCategoriaRemover.addEventListener('click', () => {
     fecharModal(modalRemover)
 })
 
-/********MODAL ALERTA********
-btnCategoria.addEventListener('click', () => {
-    abrirModal(modalAlerta)
-})
+/********MODAL ALERTA********/
+const alertamensageText = (text) => {
+    alertamensage.innerText = text
+}
 
 cancelarAlerta.addEventListener('click', () => {
     fecharModal(modalAlerta)
 })
-*/
 
 /**********MODAL PROGRESS********** *
 btnCategoria.addEventListener('click', () => {

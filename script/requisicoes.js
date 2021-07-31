@@ -4,18 +4,20 @@ const bd = firebase.firestore()
 const addCategoriasBd = (verifieldId, verifieldName) => {
 
     const idNumber = Number(verifieldId)
-
-    bd.collection('categorias').doc(verifieldId).set({
+    const dados = {
         id: idNumber,
         nome: verifieldName
-    })
-    .then(()=> {
-        fecharModal(modalProgress)
-        console.log('Sucesso em adicionar categoria');
-    })
-    .catch((error) => {
-        console.log('Error ao adicionar categoria' +error);
-    })
+    }
+
+    bd.collection('categorias').doc(verifieldId).set(dados)
+        .then(() => {
+            abrirModal(modalAlerta)
+            alertamensageText('Sucesso ao salvar dados')
+            fecharModal(modalProgress)
+        })
+        .catch((error) => {
+            alertamensageText('Erro ao salvar dados: '+ error)
+        })
 }
 
 
