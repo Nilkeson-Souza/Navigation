@@ -1,22 +1,26 @@
-const db = firebase.firestore()
+const bd = firebase.firestore()
 
-/*db.collection("categorias").doc('1').get().then((doc) => {
-    
-    if(doc.exists){
-        
-        const dados = doc.data()
+//------Função que possibilita adicionar categorias no banco------//
+const addCategoriasBd = (verifieldId, verifieldName) => {
 
-        const nome = dados.nome
+    const idNumber = Number(verifieldId)
 
-        console.log(nome);
+    bd.collection('categorias').doc(verifieldId).set({
+        id: idNumber,
+        nome: verifieldName
+    })
+    .then(()=> {
+        fecharModal(modalProgress)
+        console.log('Sucesso em adicionar categoria');
+    })
+    .catch((error) => {
+        console.log('Error ao adicionar categoria' +error);
+    })
+}
 
-    } else {
-        console.log('Não existe');
-    }
 
-});*/
-
-db.collection("categorias").onSnapshot((documentos) => {
+//----------Esculta todas alteração que houver nos documentos---------// 
+bd.collection("categorias").orderBy('id', 'asc').onSnapshot((documentos) => {
 
     documentos.docChanges().forEach(changes => {
 
@@ -26,9 +30,7 @@ db.collection("categorias").onSnapshot((documentos) => {
 
             const dados = documento.data()
 
-            const key = documento.id
-
-            console.log(`Nome da pasta ${key}`);
+            addDadosTabela(dados)
 
         }
         else if (changes.type === 'modified') {

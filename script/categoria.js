@@ -23,7 +23,7 @@ const clearFields = (id, name) => {
     name.value = ''
 }
 
-//--Abrir modal categoria
+//--Abrir Add modal categoria
 btnCategoria.addEventListener('click', () => {
     abrirModal(categoria)
 })
@@ -32,7 +32,7 @@ btnCancelarCategoria.addEventListener('click', () => {
     fecharModal(categoria)
 })
 
-//------Função de esculta de adicionar categoria
+//------Função de adicionar categoria
 salvarCategoria.addEventListener('click', () => {
 
     const id = c('#adicionarId')
@@ -42,7 +42,10 @@ salvarCategoria.addEventListener('click', () => {
 
     if (verifieldId !== '' && verifieldName !== '') {
 
-        alert(`ID ${id.value}: ${name.value}`)
+        abrirModalflex(modalProgress)
+
+        addCategoriasBd(verifieldId, verifieldName)
+
         clearFields(id, name)
 
     } else {
@@ -63,7 +66,7 @@ btnCancelarCategoriaAlterar.addEventListener('click', () => {
 })
 
 /********MODAL REMOVER CATEGORIA********/
-function fecharModalAlterar() {
+function fecharModalRemover() {
     abrirModal(modalRemover)
 }
 
@@ -105,17 +108,9 @@ const fecharModal = (element) => {
 
 const tbody = c('#tbody');
 
-const dados = [
-    { id: '168', nome: 'Nilkeson' },
-    { id: '26', nome: 'Taiane' },
-    { id: '36', nome: 'Nikollas' },
-    { id: '460', nome: 'Nikollas' },
-    { id: '536', nome: 'Nikollas' },
-]
 
 
-
-dados.forEach(element => {
+const addDadosTabela = (dados) => {
 
     const linha = tbody.insertRow();
 
@@ -123,8 +118,8 @@ dados.forEach(element => {
     const colunaNome = linha.insertCell(1)
     const colunaAcoes = linha.insertCell(2)
 
-    const idThis = document.createTextNode(element.id)
-    const nomeThis = document.createTextNode(element.nome)
+    const idThis = document.createTextNode(dados.id)
+    const nomeThis = document.createTextNode(dados.nome)
 
     colunaId.appendChild(idThis)
     colunaNome.appendChild(nomeThis)
@@ -138,12 +133,12 @@ dados.forEach(element => {
     buttonRemover.className = 'btn btn-danger'
 
     buttonAlterar.onclick = () => abrirModalAlterar()
-    buttonRemover.onclick = () => fecharModalAlterar()
+    buttonRemover.onclick = () => fecharModalRemover()
 
     colunaAcoes.appendChild(buttonAlterar)
     colunaAcoes.appendChild(document.createTextNode(' '))
     colunaAcoes.appendChild(buttonRemover)
-})
+}
 
 //--------Funções da tabela---------//
 
@@ -173,6 +168,7 @@ const pesquisar = (opcao) => {
     }
 }
 
+//-------Max rows------//
 maxRows.addEventListener('change', () => {
     
     let tr, i, maxLinhas
