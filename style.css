@@ -248,13 +248,16 @@ body{
     /*background-color: #0063ce;*/
     margin-top: 23px;
     padding: 15px;
+    overflow-y: scroll;
+    max-height: 550px;
+    min-height: 300px;
 }
 
 #tabelaCategoria{
     width: 100%;
-    max-width: 100%;
     border-collapse: collapse;
     overflow-x: auto;
+    
 }
 
 #tabelaCategoria td, #tabelaCategoria th {
