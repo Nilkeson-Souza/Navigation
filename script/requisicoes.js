@@ -5,21 +5,26 @@ const addCategoriasBd = (verifieldId, verifieldName) => {
 
     const idNumber = Number(verifieldId)
     const dados = {
+
         id: idNumber,
         nome: verifieldName
+
     }
 
     bd.collection('categorias').doc(verifieldId).set(dados)
         .then(() => {
+
             abrirModal(modalAlerta)
             alertamensageText('Sucesso ao salvar dados')
             fecharModal(modalProgress)
+
         })
         .catch((error) => {
+
             alertamensageText('Erro ao salvar dados: '+ error)
+
         })
 }
-
 
 //----------Esculta todas alteração que houver nos documentos---------// 
 bd.collection("categorias").orderBy('id', 'asc').onSnapshot((documentos) => {
@@ -31,6 +36,8 @@ bd.collection("categorias").orderBy('id', 'asc').onSnapshot((documentos) => {
             const documento = changes.doc
 
             const dados = documento.data()
+
+            keyList.push(dados.id)
 
             addDadosTabela(dados)
 

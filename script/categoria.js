@@ -14,6 +14,9 @@ const salvarCategoria = c('.btn-salvar-categoria')
 const btnSucess = cs('.btn-sucess')
 const maxRows = c('#maxRows');
 const alertamensage = c('#alertamensage');
+const id = c('#adicionarId')
+const nome = c('#adicionarNome')
+let keyList = []
 
 
 //-----------------------------MODAL -------------------------------------//
@@ -35,22 +38,27 @@ btnCancelarCategoria.addEventListener('click', () => {
 
 //------Função de adicionar categoria
 salvarCategoria.addEventListener('click', () => {
-
-    const id = c('#adicionarId')
-    const name = c('#adicionarNome')
     const verifieldId = id.value.trim()
-    const verifieldName = name.value.trim()
+    const verifieldName = nome.value.trim()
 
-    if (verifieldId !== '' && verifieldId >= 1 && verifieldName !== '') {
+    const confirm = keyList.indexOf(Number(verifieldId))
+
+    if(confirm > -1){
+
+        abrirModal(modalAlerta)
+        alertamensageText('ID já está cadastrado no sistema')
+
+    } else if (verifieldId !== '' && verifieldId >= 1 && verifieldName !== '') {
 
         abrirModalflex(modalProgress)
 
         addCategoriasBd(verifieldId, verifieldName)
 
-        clearFields(id, name)
+        clearFields(id, nome)
 
     } else {
-        alert('Os campos não podem estar vazios')
+        abrirModal(modalAlerta)
+        alertamensageText('Os campos não podem estar vazios')
     }
 
 
