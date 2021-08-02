@@ -10,6 +10,7 @@ const btnCancelarCategoriaRemover = c('.btn-cancelar-categoriaRemover')
 const modalAlerta = c('#modalAlerta')
 const cancelarAlerta = c('#cancelarAlerta')
 const modalProgress = c('#modalProgress')
+const tbody = c('#tbody');
 const salvarCategoria = c('.btn-salvar-categoria')
 const btnSucess = cs('.btn-sucess')
 const maxRows = c('#maxRows');
@@ -17,6 +18,8 @@ const alertamensage = c('#alertamensage');
 const id = c('#adicionarId')
 const nome = c('#adicionarNome')
 let keyList = []
+const btnSalvarCategoriaAlterar = c('.btn-salvar-categoriaAlterar')
+let categoriaSelecionadaAlterar;
 
 
 //-----------------------------MODAL -------------------------------------//
@@ -66,13 +69,55 @@ salvarCategoria.addEventListener('click', () => {
 
 
 //------MODAL ALTERAR CATEGORIA
-function abrirModalAlterar() {
+function abrirModalAlterar(dados) {
     abrirModal(alterarCategoria)
+    
+    const id = document.getElementById('IdAlterar')
+    const nome = document.getElementById('NomeAlterar')
+
+    id.value = dados.id
+    nome.value = dados.nome
+
+    categoriaSelecionadaAlterar = dados.nome
+    
 }
 
+
+
+btnSalvarCategoriaAlterar.addEventListener('click', () => {
+
+    const id = document.getElementById('IdAlterar').value
+    const nome = document.getElementById('NomeAlterar').value
+
+    if(nome.trim() === ''){
+
+        abrirModal(modalAlerta)
+        alertamensageText('O campo nome não pode está vazio!')
+
+    } 
+    else if (nome === categoriaSelecionadaAlterar){
+
+        abrirModal(modalAlerta)
+        alertamensageText(`Nenhuma informação pode se alterado <br> verifique os dados e tente novamente`)
+
+    }
+    else{
+        abrirModalflex(modalProgress)
+        alterarCategoriasBd(id, nome.trim())
+    }
+
+})
+
 btnCancelarCategoriaAlterar.addEventListener('click', () => {
+
+    const id = document.getElementById('IdAlterar')
+    const nome = document.getElementById('NomeAlterar')
+
+    clearFields(id, nome)
     fecharModal(alterarCategoria)
 })
+
+
 
 /********MODAL REMOVER CATEGORIA********/
 function fecharModalRemover() {
@@ -85,21 +130,12 @@ btnCancelarCategoriaRemover.addEventListener('click', () => {
 
 /********MODAL ALERTA********/
 const alertamensageText = (text) => {
-    alertamensage.innerText = text
+    alertamensage.innerHTML = text
 }
 
 cancelarAlerta.addEventListener('click', () => {
     fecharModal(modalAlerta)
 })
-
-/**********MODAL PROGRESS********** *
-btnCategoria.addEventListener('click', () => {
-    abrirModalflex(modalProgress)
-})
-
-btnCancelarCategoria.addEventListener('click', () => {
-    fecharModal(modalProgress)
-})*/
 
 const abrirModal = (element) => {
     element.style.display = 'block';
@@ -112,11 +148,8 @@ const fecharModal = (element) => {
     element.style.display = 'none'
 }
 
-//--------------------------Tabela----------------------------------//
 
-const tbody = c('#tbody');
-
-
+//--------------------------TABELA----------------------------------//
 
 const addDadosTabela = (dados) => {
 
@@ -140,12 +173,13 @@ const addDadosTabela = (dados) => {
     buttonRemover.innerHTML = `<i class="fas fa-trash-alt">`
     buttonRemover.className = 'btn btn-danger'
 
-    buttonAlterar.onclick = () => abrirModalAlterar()
+    buttonAlterar.onclick = () => abrirModalAlterar(dados)
     buttonRemover.onclick = () => fecharModalRemover()
 
     colunaAcoes.appendChild(buttonAlterar)
     colunaAcoes.appendChild(document.createTextNode(' '))
     colunaAcoes.appendChild(buttonRemover)
+
 }
 
 //--------Funções da tabela---------//
@@ -199,3 +233,18 @@ maxRows.addEventListener('change', () => {
         }
     }
 })
+
+
+//------Atualizando dados Alterados-------//
+const atualizaDadosAlterados = (dados) => {
+    const index = keyList.indexOf(dados.id)
+
+
+    const row = tbody.rows[index]
+
+    const cellId = row.cells[0]
+    const cellNome = row.cells[1]
+
+    cellId.innerHTML = dados.id
+    cellNome.innerHTML = dados.nome
+}

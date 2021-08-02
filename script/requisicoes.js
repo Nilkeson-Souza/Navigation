@@ -26,6 +26,33 @@ const addCategoriasBd = (verifieldId, verifieldName) => {
         })
 }
 
+//------Função que possibilita ALTERAR categorias no banco------//
+const alterarCategoriasBd = (id, nome) => {
+
+    const idNumber = Number(id)
+    const dados = {
+
+        id: idNumber,
+        nome: nome
+
+    }
+
+    bd.collection('categorias').doc(id).update(dados)
+        .then(() => {
+            clearFields(id, nome)
+            abrirModal(modalAlerta)
+            alertamensageText('Sucesso em alterar dados')
+            fecharModal(modalProgress)
+            fecharModal(alterarCategoria)
+
+        })
+        .catch((error) => {
+            fecharModal(modalProgress)
+            alertamensageText('Erro em alterar dados: ' + error)
+
+        })
+}
+
 //----------Esculta todas alteração que houver nos documentos---------// 
 bd.collection("categorias").orderBy('id', 'asc').onSnapshot((documentos) => {
 
@@ -48,9 +75,7 @@ bd.collection("categorias").orderBy('id', 'asc').onSnapshot((documentos) => {
 
             const dados = documento.data()
 
-            const key = documento.id
-
-            console.log(`Nome da pasta ${key}`);
+            atualizaDadosAlterados(dados)
 
         }
         else if (changes.type === 'removed') {
