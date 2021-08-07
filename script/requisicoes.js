@@ -1,6 +1,6 @@
 const bd = firebase.firestore()
 
-//------Função que possibilita adicionar categorias no banco------//
+//------Função que possibilita ADICIONAR categorias no banco------//
 const addCategoriasBd = (verifieldId, verifieldName) => {
 
     const idNumber = Number(verifieldId)
@@ -53,6 +53,26 @@ const alterarCategoriasBd = (id, nome) => {
         })
 }
 
+//------Função que possibilita REMOVER categorias no banco------//
+const removerCategoriasBd = () => {
+
+    const id = categoriaSelecionadaRemover.id.toString()
+
+    bd.collection('categorias').doc(id).delete()
+        .then(() => {
+            fecharModal(modalProgress)
+            fecharModal(modalRemover)
+            abrirModal(modalAlerta)
+            alertamensageText('Sucesso ao remover categoria')
+
+        })
+        .catch((error) => {
+            fecharModal(modalProgress)
+            alertamensageText('Erro ao remover categoria: ' + error)
+
+        })
+}
+
 //----------Esculta todas alteração que houver nos documentos---------// 
 bd.collection("categorias").orderBy('id', 'asc').onSnapshot((documentos) => {
 
@@ -86,7 +106,7 @@ bd.collection("categorias").orderBy('id', 'asc').onSnapshot((documentos) => {
 
             const key = documento.id
 
-            console.log(`Nome da pasta ${key}`);
+            console.log(`Nome da pasta removida: ${key}`);
 
         }
 

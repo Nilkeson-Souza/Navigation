@@ -7,6 +7,7 @@ const btnCancelarCategoriaAlterar = c('.btn-cancelar-categoriaAlterar')
 const alterarCategoria = c('#modalAlterar');
 const modalRemover = c('#modalRemover')
 const btnCancelarCategoriaRemover = c('.btn-cancelar-categoriaRemover')
+const btnRemoveCategoria = c('#btnRemoveCategoria')
 const modalAlerta = c('#modalAlerta')
 const cancelarAlerta = c('#cancelarAlerta')
 const modalProgress = c('#modalProgress')
@@ -20,6 +21,7 @@ const nome = c('#adicionarNome')
 let keyList = []
 const btnSalvarCategoriaAlterar = c('.btn-salvar-categoriaAlterar')
 let categoriaSelecionadaAlterar;
+let categoriaSelecionadaRemover;
 
 
 //-----------------------------MODAL -------------------------------------//
@@ -37,6 +39,7 @@ btnCategoria.addEventListener('click', () => {
 //-------------Fechar modal categoria
 btnCancelarCategoria.addEventListener('click', () => {
     fecharModal(categoria)
+    clearFields(id, nome)
 })
 
 //------Função de adicionar categoria
@@ -119,16 +122,28 @@ btnCancelarCategoriaAlterar.addEventListener('click', () => {
 
 
 
-/********MODAL REMOVER CATEGORIA********/
-function fecharModalRemover() {
+//-------------------------MODAL REMOVER CATEGORIA---------------------------------//
+function abrirModalRemover(dados) {
     abrirModal(modalRemover)
+
+    categoriaSelecionadaRemover = dados
 }
+
+btnRemoveCategoria.addEventListener('click', () => {
+    
+    abrirModalflex(modalProgress)
+
+    removerCategoriasBd()
+
+})
 
 btnCancelarCategoriaRemover.addEventListener('click', () => {
     fecharModal(modalRemover)
 })
 
-/********MODAL ALERTA********/
+
+
+//------------------------MODAL ALERTA--------------------------//
 const alertamensageText = (text) => {
     alertamensage.innerHTML = text
 }
@@ -165,20 +180,7 @@ const addDadosTabela = (dados) => {
     colunaId.appendChild(idThis)
     colunaNome.appendChild(nomeThis)
 
-    const buttonAlterar = document.createElement('button')
-    buttonAlterar.innerHTML = `<i class="fas fa-edit"></i>`
-    buttonAlterar.className = 'btn btn-sucess'
-
-    const buttonRemover = document.createElement('button')
-    buttonRemover.innerHTML = `<i class="fas fa-trash-alt">`
-    buttonRemover.className = 'btn btn-danger'
-
-    buttonAlterar.onclick = () => abrirModalAlterar(dados)
-    buttonRemover.onclick = () => fecharModalRemover()
-
-    colunaAcoes.appendChild(buttonAlterar)
-    colunaAcoes.appendChild(document.createTextNode(' '))
-    colunaAcoes.appendChild(buttonRemover)
+    createButtonTable(colunaAcoes, dados)
 
 }
 
@@ -216,8 +218,6 @@ maxRows.addEventListener('change', () => {
     let tr, i, maxLinhas
     maxLinhas = Number(maxRows.value) -1
 
-    console.log(maxLinhas);
-
     tr = tbody.getElementsByTagName('tr');
 
 
@@ -244,7 +244,32 @@ const atualizaDadosAlterados = (dados) => {
 
     const cellId = row.cells[0]
     const cellNome = row.cells[1]
+    const acoes = row.cells[2]
+    acoes.remove()
+
+    const colunaAcoes = row.insertCell(2)
 
     cellId.innerHTML = dados.id
     cellNome.innerHTML = dados.nome
+
+    createButtonTable(colunaAcoes, dados)
+}
+
+//------Função para criar butões de ações da tabela
+const createButtonTable = (colunaAcoes, dados) => {
+
+    const buttonAlterar = document.createElement('button')
+    buttonAlterar.innerHTML = `<i class="fas fa-edit"></i>`
+    buttonAlterar.className = 'btn btn-sucess'
+
+    const buttonRemover = document.createElement('button')
+    buttonRemover.innerHTML = `<i class="fas fa-trash-alt">`
+    buttonRemover.className = 'btn btn-danger'
+
+    buttonAlterar.onclick = () => abrirModalAlterar(dados)
+    buttonRemover.onclick = () => abrirModalRemover(dados)
+
+    colunaAcoes.appendChild(buttonAlterar)
+    colunaAcoes.appendChild(document.createTextNode(' '))
+    colunaAcoes.appendChild(buttonRemover)
 }
