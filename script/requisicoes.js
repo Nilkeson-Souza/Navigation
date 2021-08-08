@@ -106,7 +106,8 @@ bd.collection("categorias").orderBy('id', 'asc').onSnapshot((documentos) => {
 
             const key = documento.id
 
-            console.log(`Nome da pasta removida: ${key}`);
+            removerDadosAlterados(dados)
+
 
         }
 

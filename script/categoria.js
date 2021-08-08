@@ -255,6 +255,16 @@ const atualizaDadosAlterados = (dados) => {
     createButtonTable(colunaAcoes, dados)
 }
 
+//------Atualizando dados Removidos-------//
+const removerDadosAlterados = (dados) => {
+
+    const index = keyList.indexOf(dados.id)
+    
+    tbody.rows[index].remove()
+    keyList.splice(index,1)
+
+}
+
 //------Função para criar butões de ações da tabela
 const createButtonTable = (colunaAcoes, dados) => {
 
@@ -273,3 +283,4 @@ const createButtonTable = (colunaAcoes, dados) => {
     colunaAcoes.appendChild(document.createTextNode(' '))
     colunaAcoes.appendChild(buttonRemover)
 }
+
